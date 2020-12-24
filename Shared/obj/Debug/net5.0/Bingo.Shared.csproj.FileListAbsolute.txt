@@ -1,0 +1,12 @@
+C:\Users\jason\Source\Bingo\Shared\bin\Debug\net5.0\Bingo.Shared.deps.json
+C:\Users\jason\Source\Bingo\Shared\bin\Debug\net5.0\Bingo.Shared.dll
+C:\Users\jason\Source\Bingo\Shared\bin\Debug\net5.0\ref\Bingo.Shared.dll
+C:\Users\jason\Source\Bingo\Shared\bin\Debug\net5.0\Bingo.Shared.pdb
+C:\Users\jason\Source\Bingo\Shared\obj\Debug\net5.0\Bingo.Shared.csprojAssemblyReference.cache
+C:\Users\jason\Source\Bingo\Shared\obj\Debug\net5.0\Bingo.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jason\Source\Bingo\Shared\obj\Debug\net5.0\Bingo.Shared.AssemblyInfoInputs.cache
+C:\Users\jason\Source\Bingo\Shared\obj\Debug\net5.0\Bingo.Shared.AssemblyInfo.cs
+C:\Users\jason\Source\Bingo\Shared\obj\Debug\net5.0\Bingo.Shared.csproj.CoreCompileInputs.cache
+C:\Users\jason\Source\Bingo\Shared\obj\Debug\net5.0\Bingo.Shared.dll
+C:\Users\jason\Source\Bingo\Shared\obj\Debug\net5.0\ref\Bingo.Shared.dll
+C:\Users\jason\Source\Bingo\Shared\obj\Debug\net5.0\Bingo.Shared.pdb
