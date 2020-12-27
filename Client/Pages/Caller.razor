@@ -1,0 +1,69 @@
+@page "/caller"
+@* @using Microsoft.AspNetCore.SignalR.Client
+@inject NavigationManager NavigationManager
+@implements IAsyncDisposable *@
+
+<style type="text/css">
+    .called {
+        background-color: yellow;
+    }
+    #CallerCard
+    {
+        width: 100%;
+    }
+    #CallerCard td 
+    {
+        border: 3px solid black;
+        width: 20%;
+        text-align: center;
+        font-weight: bold;
+    }
+</style>
+
+<h1>BINGO Caller</h1>
+
+<button @onclick="Pick">Pick</button>
+
+<table id="CallerCard">
+    @* <thead>
+        <tr>
+            <td>B</td>
+            <td>I</td>
+            <td>N</td>
+            <td>G</td>
+            <td>O</td>
+        </tr>
+    </thead> *@
+    @for (int r = 0; r < 15; r++)
+    {
+        <tr>
+        @for (int c = 0; c < 5; c++)
+        {
+            var n = (r + 1) * (c + 1);
+            <td class="@CssClass(n)">@bingo[c]-@n</td>
+        }
+        </tr>
+    }
+</table>
+
+@code {
+    private char[] bingo = new char[] { 'B', 'I', 'N', 'G', 'O' };
+    private HashSet<int> called = new HashSet<int>();
+
+    private string CssClass(int n)
+    {
+        return called.Contains(n) ? "called" : string.Empty;
+    }
+
+    private void Pick()
+    {
+        var rnd = new Random();
+        int x;
+        bool isDone = false;
+        while (!isDone)
+        {
+            x = rnd.Next(1, 75);
+            isDone = called.Add(x);
+        }        
+    }
+}
