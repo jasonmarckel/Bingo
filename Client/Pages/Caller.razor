@@ -23,23 +23,15 @@
 <h1>BINGO Caller</h1>
 
 <button @onclick="Pick">Pick</button>
+<button @onclick="Restart">New Game</button>
 
 <table id="CallerCard">
-    @* <thead>
-        <tr>
-            <td>B</td>
-            <td>I</td>
-            <td>N</td>
-            <td>G</td>
-            <td>O</td>
-        </tr>
-    </thead> *@
     @for (int r = 0; r < 15; r++)
     {
         <tr>
         @for (int c = 0; c < 5; c++)
         {
-            var n = (r + 1) * (c + 1);
+            var n = (r + 1) + (15 * c);
             <td class="@CssClass(n)">@bingo[c]-@n</td>
         }
         </tr>
@@ -48,6 +40,7 @@
 
 @code {
     private char[] bingo = new char[] { 'B', 'I', 'N', 'G', 'O' };
+    private int cardSize = 75;
     private HashSet<int> called = new HashSet<int>();
 
     private string CssClass(int n)
@@ -57,13 +50,17 @@
 
     private void Pick()
     {
+        if (called.Count == cardSize) { return; }
         var rnd = new Random();
         int x;
-        bool isDone = false;
-        while (!isDone)
+        do
         {
-            x = rnd.Next(1, 75);
-            isDone = called.Add(x);
-        }        
+            x = rnd.Next(1, cardSize + 1);
+        } while (!called.Add(x));
+    }
+
+    private void Restart()
+    {
+        called.Clear();
     }
 }
