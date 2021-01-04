@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using Microsoft.AspNetCore.SignalR.Client
 @inject NavigationManager NavigationManager
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
 @implements IAsyncDisposable
 
 <style type="text/css">
@@ -42,6 +43,10 @@
 </div>
 <button @onclick="Send" disabled="@(!IsConnected)">Send</button>
 
+<div>
+    <button type="button" @onclick="GenerateNewCard" class="btn btn-outline-secondary btn-sm">New Card</button>
+</div>
+
 <hr>
 
 <ul id="messagesList">
@@ -76,15 +81,11 @@
     }
 </table>
 
-<!--
-<div>
-    <button type="button" @onclick="GenerateNewCard" class="btn btn-outline-secondary btn-sm">New Card</button>
-</div>
--->
-
 @code {
     private Card card;
-    private string playerName = "Jason";
+
+     private string playerName { get; set; } = string.Empty;
+
     private HubConnection hubConnection;
     private List<string> messages = new List<string>();
     private string messageInput;
@@ -145,7 +146,7 @@
     }
 
     protected override async Task OnInitializedAsync()
-    {
+    {        
         card = new Card();
 
         hubConnection = new HubConnectionBuilder()
@@ -160,6 +161,15 @@
         });
 
         await hubConnection.StartAsync();
+
+        try
+        {
+            playerName = await localStorage.GetItemAsync<string>("playerName");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
 
     }
 
@@ -182,6 +192,8 @@
     }
     private void GenerateNewCard()
     {
+        localStorage.SetItemAsync("playerName", playerName);
+
         card.GenerateNewCard();
     }
 }
